@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package scrum;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
+
+import org.bson.Document;
+import java.text.ParseException;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -13,9 +16,19 @@ import com.mongodb.client.MongoDatabase;
  */
 public class SCRUM {
 
-    public static void main(String[] args) {
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        MongoDatabase db = mongoClient.getDatabase("graphDB");
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) throws ParseException {
+        
+      Client mongoClient= new Client("localhost",27017,"test");
+      ArrayList<Document> graphs = mongoClient.find();
+      for(int i=0; i < graphs.size(); i++){
+          System.out.print("\n" + graphs.get(i));
+      }
+      
+      
         
     }
     
