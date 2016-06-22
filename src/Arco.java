@@ -11,22 +11,24 @@ import java.util.Hashtable;
  *
  * @author Nacho
  */
-public class Nodo {
+public class Arco {
     
-    private String tema;
+    private Nodo n1;
+    private Nodo n2;
     private Hashtable<String,Object> atributos;
     
-    public Nodo(String nombre){
-        tema = nombre;
+    public Arco(Nodo a, Nodo b){
+        n1 = a;
+        n2 = b;
         atributos = new Hashtable<String,Object>();
     }
     
-    public String getTema(){
-        return tema;
+    public Nodo getNodo1(){
+        return n1;
     }
     
-    public void setTema(String tn){
-        tema = tn;
+    public Nodo getNodo2(){
+        return n2;
     }
     
     public void agregarAtributo(String clave, Object valor){
