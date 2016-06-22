@@ -30,6 +30,12 @@ public class GrafoDirigido {
                 nodos.remove(i);
             }
         }
+        for(int i = 0; i<arcos.size(); i++){
+            if(arcos.get(i).getNodo1().getTema().equals(tema)
+                || arcos.get(i).getNodo2().getTema().equals(tema)){
+                arcos.remove(i);
+            }
+        }
     }
     
     public void modificarNodo(String tv, String tn){
