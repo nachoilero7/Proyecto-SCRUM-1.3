@@ -1,4 +1,5 @@
 
+import com.mongodb.BasicDBObject;
 import java.util.Hashtable;
 
 /*
@@ -60,5 +61,13 @@ public class Arco {
         else{
             //cartel: atributo inexistente.(esto es para la interfaz)
         }
+    }
+    
+    public BasicDBObject toDBObject() {
+        BasicDBObject dBObj = new BasicDBObject();
+        dBObj.append("nodo1", n1.toDBObject());
+        dBObj.append("nodo2", n2.toDBObject());
+        dBObj.append("atributos",atributos);
+        return dBObj;
     }
 }
