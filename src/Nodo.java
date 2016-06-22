@@ -1,4 +1,5 @@
 
+import com.mongodb.BasicDBObject;
 import java.util.Hashtable;
 
 /*
@@ -58,5 +59,12 @@ public class Nodo {
         else{
             //cartel: atributo inexistente.(esto es para la interfaz)
         }
+    }
+    
+    public BasicDBObject toDBObject() {
+        BasicDBObject dBObj = new BasicDBObject();
+        dBObj.append("tema", this.getTema());
+        dBObj.append("atributos",atributos);
+        return dBObj;
     }
 }
