@@ -21,6 +21,14 @@ public class Nodo {
         atributos = new Hashtable<String,Object>();
     }
     
+    public String getTema(){
+        return tema;
+    }
+    
+    public void setTema(String tn){
+        tema = tn;
+    }
+    
     public void agregarAtributo(String clave, Object valor){
         if(atributos.containsKey(clave)){
             //cartel: ya tiene ese atributo.(esto es para la interfaz)
