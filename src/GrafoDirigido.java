@@ -23,7 +23,12 @@ public class GrafoDirigido {
     
     public Arco buscarArco (String tema1, String tema2){
        	
-    	
+    	 for(int i = 0; i<arcos.size(); i++){
+             if(arcos.getNodo1(i).getTema().equals(tema1) && arcos.getNodo2(i).getTema().equals(tema2) ){
+                 return arcos.elementAt(i);
+             }
+   	  }
+   	  return null;
     	
     }
     
