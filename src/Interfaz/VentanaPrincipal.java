@@ -103,7 +103,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearGrafoActionPerformed
 
     private void ImportarEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarEditarActionPerformed
-        //Aca tendriamos que cargar el grafo
         
         //Creo el objeto JFileChooser
         JFileChooser fc = new JFileChooser();
@@ -126,6 +125,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 //Aca se deberia cargar cada cosa en su lugar para mostrar por pantalla
             }
         }
+        //UNA VEZ QUE SE IMPORTA CREAR NUEVA VENTANA DE CREACION DE GRAFO Y HACERLA VISIBLE
+        CrearGrafo cg = new CrearGrafo();
+        cg.setVisible(true);
     }//GEN-LAST:event_ImportarEditarActionPerformed
 
     private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
