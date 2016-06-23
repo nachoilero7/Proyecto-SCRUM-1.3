@@ -100,7 +100,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="CrearNodo" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Component id="TemaCrearNodo" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="109" max="-2" attributes="0"/>
                   </Group>
@@ -110,20 +110,20 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="EliminarAtributo" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField7" min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="AtributoEliminarAtributo" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jSeparator1" alignment="1" min="-2" pref="230" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="EliminarNodo" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="103" max="-2" attributes="0"/>
+                              <Component id="TemaEliminarNodo" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="ActualizarNodo" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField3" min="-2" pref="103" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="TemaViejoActualizarNodo" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="TemaNuevoActualizarNodo" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jSeparator2" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
@@ -132,8 +132,8 @@
                               <Component id="AgregarAtributo" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField6" min="-2" pref="103" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="ValorAgregarAtributo" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="AtributoAgregarAtributo" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jSeparator4" alignment="1" min="-2" pref="230" max="-2" attributes="0"/>
@@ -141,8 +141,8 @@
                               <Component id="ActualizarAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField9" min="-2" pref="103" max="-2" attributes="0"/>
-                                  <Component id="jTextField8" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="NuevoValorActualizarAtributo" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="AtributoActualizarAtributo" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -157,9 +157,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="EliminarArco" min="-2" pref="141" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField12" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="Nodo1EliminarArco" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField13" max="32767" attributes="0"/>
+                      <Component id="Nodo2EliminarArco" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jSeparator6" alignment="1" max="32767" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
@@ -174,30 +174,30 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField26" max="32767" attributes="0"/>
-                              <Component id="jTextField25" max="32767" attributes="0"/>
-                              <Component id="jTextField22" max="32767" attributes="0"/>
-                              <Component id="jTextField19" max="32767" attributes="0"/>
-                              <Component id="jTextField18" max="32767" attributes="0"/>
+                              <Component id="NuevoValorActualizarAtributoArco" max="32767" attributes="0"/>
+                              <Component id="AtributoActualizarAtributoArco" max="32767" attributes="0"/>
+                              <Component id="AtributoEliminarAtributoArco" max="32767" attributes="0"/>
+                              <Component id="ValorAgregarAtributoArco" max="32767" attributes="0"/>
+                              <Component id="AtributoAgregarAtributoArco" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField14" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="Nodo1ActualizarArco" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField15" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="Nodo2ActualizarArco" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField16" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="Nodo1AgregarAtributoArco" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField17" max="32767" attributes="0"/>
+                                  <Component id="Nodo2AgregarAtributoArco" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField20" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="Nodo1EliminarAtributoArco" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField21" max="32767" attributes="0"/>
+                                  <Component id="Nodo2EliminarAtributoArco" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField23" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="Nodo1ActualizarAtributoArco" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField24" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="Nodo2ActualizarAtributoArco" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -207,9 +207,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="CrearArco" min="-2" pref="141" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField10" min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="Nodo1CrearArco" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField11" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="Nodo2CrearArco" min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -230,7 +230,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="CrearNodo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TemaCrearNodo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -240,44 +240,44 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="EliminarNodo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TemaEliminarNodo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator2" min="-2" pref="2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="ActualizarNodo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TemaViejoActualizarNodo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
+                              <Component id="TemaNuevoActualizarNodo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="AgregarAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="AtributoAgregarAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField6" min="-2" max="-2" attributes="0"/>
+                              <Component id="ValorAgregarAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="EliminarAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="AtributoEliminarAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="jSeparator5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="ActualizarAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="AtributoActualizarAtributo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField9" min="-2" max="-2" attributes="0"/>
+                              <Component id="NuevoValorActualizarAtributo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField26" min="-2" max="-2" attributes="0"/>
+                              <Component id="NuevoValorActualizarAtributoArco" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane3" max="32767" attributes="0"/>
                       </Group>
@@ -285,8 +285,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="CrearArco" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Nodo1CrearArco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Nodo2CrearArco" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -296,49 +296,49 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="EliminarArco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo1EliminarArco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo2EliminarArco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Component id="jSeparator7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="ActualizarArco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo1ActualizarArco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo2ActualizarArco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="AgregarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo1AgregarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo2AgregarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField18" min="-2" max="-2" attributes="0"/>
+                              <Component id="AtributoAgregarAtributoArco" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField19" min="-2" max="-2" attributes="0"/>
+                              <Component id="ValorAgregarAtributoArco" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="EliminarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo1EliminarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo2EliminarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField22" min="-2" max="-2" attributes="0"/>
+                              <Component id="AtributoEliminarAtributoArco" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="ActualizarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo1ActualizarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Nodo2ActualizarAtributoArco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField25" min="-2" max="-2" attributes="0"/>
+                              <Component id="AtributoActualizarAtributoArco" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="306" max="-2" attributes="0"/>
                       </Group>
@@ -451,7 +451,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList1">
+        <Component class="javax.swing.JList" name="ListaNodos">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -467,7 +467,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList2">
+        <Component class="javax.swing.JList" name="ListaArcos">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -476,158 +476,158 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="TemaCrearNodo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tema"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TemaCrearNodoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="TemaEliminarNodo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tema"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="TemaViejoActualizarNodo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tema viejo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="TemaNuevoActualizarNodo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo Tema"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TemaNuevoActualizarNodoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator3">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="AtributoAgregarAtributo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atributo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="ValorAgregarAtributo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valor"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator4">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField7">
+    <Component class="javax.swing.JTextField" name="AtributoEliminarAtributo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atributo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator5">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField8">
+    <Component class="javax.swing.JTextField" name="AtributoActualizarAtributo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atributo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField9">
+    <Component class="javax.swing.JTextField" name="NuevoValorActualizarAtributo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo Valor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField10">
+    <Component class="javax.swing.JTextField" name="Nodo1CrearArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField11">
+    <Component class="javax.swing.JTextField" name="Nodo2CrearArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator6">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField12">
+    <Component class="javax.swing.JTextField" name="Nodo1EliminarArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField13">
+    <Component class="javax.swing.JTextField" name="Nodo2EliminarArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator7">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField14">
+    <Component class="javax.swing.JTextField" name="Nodo1ActualizarArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField15">
+    <Component class="javax.swing.JTextField" name="Nodo2ActualizarArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator8">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField16">
+    <Component class="javax.swing.JTextField" name="Nodo1AgregarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField17">
+    <Component class="javax.swing.JTextField" name="Nodo2AgregarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField18">
+    <Component class="javax.swing.JTextField" name="AtributoAgregarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atributo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField19">
+    <Component class="javax.swing.JTextField" name="ValorAgregarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valor"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator9">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField20">
+    <Component class="javax.swing.JTextField" name="Nodo1EliminarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField21">
+    <Component class="javax.swing.JTextField" name="Nodo2EliminarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField22">
+    <Component class="javax.swing.JTextField" name="AtributoEliminarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atributo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator10">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField23">
+    <Component class="javax.swing.JTextField" name="Nodo1ActualizarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField24">
+    <Component class="javax.swing.JTextField" name="Nodo2ActualizarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nodo 2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField25">
+    <Component class="javax.swing.JTextField" name="AtributoActualizarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atributo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField26">
+    <Component class="javax.swing.JTextField" name="NuevoValorActualizarAtributoArco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo Valor"/>
       </Properties>
