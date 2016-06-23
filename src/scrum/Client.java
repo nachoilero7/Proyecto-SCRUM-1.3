@@ -40,14 +40,14 @@ public class Client{
     }
  
     
-    public void insert(Document document){
-            this.db.getCollection("graph").insertOne(document);
+    public void insert(String collection, Document document){
+            this.db.getCollection(collection).insertOne(document);
     }
     
   
-    public ArrayList<Document> find(Document query){
+    public ArrayList<Document> find(String collection,Document query){
         ArrayList<Document> documents = new ArrayList<>();
-        FindIterable<Document> iterable = db.getCollection("graph").find(query);
+        FindIterable<Document> iterable = db.getCollection(collection).find(query);
         iterable.forEach(new Block<Document>(){
             @Override
             public void apply(final Document document) {
@@ -55,28 +55,42 @@ public class Client{
             }
             
         });
-        return documents;
+        System.out.print("\n Mi size: " + documents.size());
+        if(documents.isEmpty())
+            return null;
+        else
+            return documents;
     }
     @SuppressWarnings("empty-statement")
     
-     public ArrayList<Document> find(){
+     public ArrayList<Document> find(String collection){
         ArrayList<Document> documents = new ArrayList<>();
-        FindIterable<Document> iterable = db.getCollection("graph").find();
+       
+        FindIterable<Document> iterable = db.getCollection(collection).find();
         iterable.forEach(new Block<Document>(){
             @Override
             public void apply(final Document document) {
                 documents.add(document);
+                
             }
             
         });
-        return documents;
+        if(documents.isEmpty())
+            return null;
+        else
+            return documents;
     }
     
-     public void remove(Document document){
-         db.getCollection("graph").deleteMany(document);
+     public void remove(String collection,Document document){
+         db.getCollection(collection).deleteMany(document);
+         
      }
      
-     public void update(Document dO, Document dU){
-         db.getCollection("graph").updateOne(dO,new Document("$set",dU));
+     public void update(String collection,Document dO, Document dU){
+         db.getCollection(collection).updateOne(dO,new Document("$set",dU));
+     }
+     
+     public void updateAttr(String collection,Document dO, Document dU){
+         db.getCollection(collection).updateOne(dO,new Document("$unset",dU));
      }
 }

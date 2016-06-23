@@ -20,16 +20,35 @@ public class SCRUM {
      *
      * @param args
      */
-    public static void main(String[] args) throws ParseException {
+   
         
-      Client mongoClient= new Client("localhost",27017,"test");
+      /*Client mongoClient= new Client("localhost",27017,"test");
       ArrayList<Document> graphs = mongoClient.find();
       for(int i=0; i < graphs.size(); i++){
           System.out.print("\n" + graphs.get(i));
       }
       
-      
+      */
+     public static void main(String args[]) {
+         Client mongo = new Client("localhost",27017,"test");
+         
+         Nodo cm = new Nodo("CM",mongo);
+         Nodo pp = new Nodo("PP",mongo);
+         Nodo ma = new Nodo("MA",mongo);
+         Nodo qa = new Nodo("QA",mongo);
+         
+         Arco cm_pp = new Arco(mongo);
+         cm_pp.agregarArco(ma, qa);
+          
+       
+         
+         
         
+         
+         
+     
     }
+
+   
     
 }
