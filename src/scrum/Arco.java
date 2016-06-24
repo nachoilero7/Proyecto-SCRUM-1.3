@@ -48,16 +48,13 @@ public class Arco {
     }
     public void agregarArco(Nodo a, Nodo b){
         
-        if( this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())) == null && !ciclo(a.id(),b.id())){
-             this.mDB.insert(this.collection, new Document("origen",a.id()).append("destino",b.id()));
-             this._id = this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())).get(0).get("_id");
+        if( this.mDB.find(this.collection,new Document("origen",a.devolverAtributo("nombre")).append("destino",b.devolverAtributo("nombre"))) == null && !ciclo(a.devolverAtributo("nombre"),b.devolverAtributo("nombre"))){
+             this.mDB.insert(this.collection, new Document("origen",a.devolverAtributo("nombre")).append("destino",b.devolverAtributo("nombre")));
+             this._id = this.mDB.find(this.collection,new Document("origen",a.devolverAtributo("nombre")).append("destino",b.devolverAtributo("nombre"))).get(0).get("_id");
         }
-        if( this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())) != null){
-            this._id = this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())).get(0).get("_id");
+        if( this.mDB.find(this.collection,new Document("origen",a.devolverAtributo("nombre")).append("destino",b.devolverAtributo("nombre"))) != null){
+             this._id = this.mDB.find(this.collection,new Document("origen",a.devolverAtributo("nombre")).append("destino",b.devolverAtributo("nombre"))).get(0).get("_id");
         }
-        
-        
-     
     
     }
     
