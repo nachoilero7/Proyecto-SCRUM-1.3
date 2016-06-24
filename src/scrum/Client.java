@@ -31,7 +31,7 @@ public class Client{
     MongoClient mongoClient;
     MongoDatabase db;
     
-    Client(String dir,int port,String nameDB){
+    public Client(String dir,int port,String nameDB){
         this.dir = dir;
         this.port = port;
         this.mongoClient = new MongoClient(this.dir, this.port);
@@ -55,6 +55,7 @@ public class Client{
             }
             
         });
+        System.out.print("\n Mi size: " + documents.size());
         if(documents.isEmpty())
             return null;
         else
