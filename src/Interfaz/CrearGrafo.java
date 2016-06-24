@@ -98,8 +98,8 @@ public class CrearGrafo extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         addArcoNodo1 = new javax.swing.JComboBox<>();
         addArcoNodo2 = new javax.swing.JComboBox<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        deleteArco = new javax.swing.JComboBox<>();
+        addAttrArco = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -262,9 +262,9 @@ public class CrearGrafo extends javax.swing.JFrame {
 
         addArcoNodo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        deleteArco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addAttrArco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -392,7 +392,7 @@ public class CrearGrafo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(EliminarArco, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(deleteArco, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jSeparator7)
                                 .addComponent(jSeparator8)
@@ -408,7 +408,7 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addComponent(AtributoEliminarAtributoArco)
                                         .addComponent(ValorAgregarAtributoArco)
                                         .addComponent(AtributoAgregarAtributoArco)
-                                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(addAttrArco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,7 +450,7 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(EliminarArco)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(deleteArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(7, 7, 7)
                                         .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -458,7 +458,7 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(AgregarAtributoArco)
-                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(addAttrArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(AtributoAgregarAtributoArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -681,10 +681,14 @@ public class CrearGrafo extends javax.swing.JFrame {
     
         ArrayList<Document> arcos = mongo.find("arco");
         ListaArcos.setText("");
+        deleteArco.removeAllItems();
+        addAttrArco.removeAllItems();
         if(arcos != null){
             for (Document arco : arcos) {
-                
-                ListaArcos.append(arco.getString("origen") + " -> " + arco.getString("destino"));
+                String d = arco.getString("origen") + "->" + arco.getString("destino");
+                deleteArco.addItem(d);
+                addAttrArco.addItem(d);
+                ListaArcos.append( d + "\n");
             }
         }
     }
@@ -692,30 +696,36 @@ public class CrearGrafo extends javax.swing.JFrame {
         Nodo nOne = new Nodo((String)addArcoNodo1.getSelectedItem(),mongo);
         Nodo nTwo = new Nodo((String)addArcoNodo2.getSelectedItem(),mongo);
         Arco arco = new Arco(mongo);
-        arco.agregarArco(nOne, nTwo);   
+        arco.agregarArco(nOne, nTwo); 
+        updateViewArco();
         
     }//GEN-LAST:event_CrearArcoActionPerformed
     
     private void EliminarArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarArcoActionPerformed
-        Nodo nOne = new Nodo("QA",mongo);
-        Nodo nTwo = new Nodo("CM",mongo);
+        String nodos = (String) this.deleteArco.getSelectedItem();
+        
         Arco arco = new Arco(mongo);
-        arco.agregarArco(nOne, nTwo);
+        Nodo a = new Nodo(nodos.split("->")[0],mongo);
+        Nodo b = new Nodo(nodos.split("->")[1],mongo);
+        arco.agregarArco(a,b);
         arco.dropArco();
         updateViewArco();
     }//GEN-LAST:event_EliminarArcoActionPerformed
 
     private void AgregarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAtributoArcoActionPerformed
-        Nodo nOne = new Nodo("QA",mongo);
-        Nodo nTwo = new Nodo("CM",mongo);
+        String nodos = (String) this.addAttrArco.getSelectedItem();
+        
         Arco arco = new Arco(mongo);
-        arco.agregarArco(nOne, nTwo);
-        arco.dropArco();
-        updateViewArco();
+        Nodo a = new Nodo(nodos.split("->")[0],mongo);
+        Nodo b = new Nodo(nodos.split("->")[1],mongo);
+        arco.agregarArco(a,b);
+        arco.agregarAtributo(AtributoAgregarAtributoArco.getText(), ValorAgregarAtributoArco.getText());
+        
     }//GEN-LAST:event_AgregarAtributoArcoActionPerformed
 
     private void EliminarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAtributoArcoActionPerformed
-        // TODO add your handling code here:
+        
+  
     }//GEN-LAST:event_EliminarAtributoArcoActionPerformed
 
     private void ActualizarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarAtributoArcoActionPerformed
@@ -804,10 +814,10 @@ public class CrearGrafo extends javax.swing.JFrame {
     private javax.swing.JMenu VisualizarGrafo;
     private javax.swing.JComboBox<String> addArcoNodo1;
     private javax.swing.JComboBox<String> addArcoNodo2;
+    private javax.swing.JComboBox<String> addAttrArco;
+    private javax.swing.JComboBox<String> deleteArco;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
