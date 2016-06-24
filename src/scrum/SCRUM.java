@@ -5,6 +5,7 @@
  */
 package scrum;
 
+import java.io.IOException;
 import org.bson.Document;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class SCRUM {
       }
       
       */
-     public static void main(String args[]) {
+     public static void main(String args[]) throws IOException {
          Client mongo = new Client("localhost",27017,"test");
          
          Nodo cm = new Nodo("CM",mongo);
@@ -38,7 +39,12 @@ public class SCRUM {
          Nodo qa = new Nodo("QA",mongo);
          
          Arco cm_pp = new Arco(mongo);
-         cm_pp.agregarArco(ma, qa);
+         cm_pp.agregarArco(ma, qa);  
+         Arco cm_ma = new Arco(mongo);
+         cm_ma.agregarArco(cm, ma);
+         Arco pp_ma = new Arco(mongo);
+         pp_ma.agregarArco(pp, ma);
+         Export e = new Export(mongo, "d:");
           
        
          
