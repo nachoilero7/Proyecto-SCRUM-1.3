@@ -100,6 +100,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // CREAR NUEVA VENTANA DE CREACION DE GRAFO Y HACERLA VISIBLE
         CrearGrafo cg = new CrearGrafo();
         cg.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CrearGrafoActionPerformed
 
     private void ImportarEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarEditarActionPerformed
