@@ -17,7 +17,7 @@ import org.bson.Document;
  * @author DiegoMSI
  */
 public class Export {
-    Export(Client mDB, String savePath) throws IOException{
+    public Export(Client mDB, String savePath) throws IOException{
         String outTextFile = savePath + "\\GrafoExport.txt";
         String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
         String outImageFile = savePath + "\\GrafoExport.jpg";   
