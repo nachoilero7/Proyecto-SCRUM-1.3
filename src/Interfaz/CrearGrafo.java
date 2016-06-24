@@ -750,7 +750,11 @@ public class CrearGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearArcoActionPerformed
 
     private void EliminarArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarArcoActionPerformed
-        // TODO add your handling code here:
+         Nodo nOne = new Nodo("QA",mongo);
+        Nodo nTwo = new Nodo("CM",mongo);
+        Arco arco = new Arco(mongo);
+        arco.agregarArco(nOne, nTwo);
+        arco.agregarAtributo("Practica", "Algooo re locoooo");
     }//GEN-LAST:event_EliminarArcoActionPerformed
 
     private void AgregarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAtributoArcoActionPerformed

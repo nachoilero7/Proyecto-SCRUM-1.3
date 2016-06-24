@@ -50,8 +50,12 @@ public class Arco {
         
         if( this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())) == null && !ciclo(a.id(),b.id())){
              this.mDB.insert(this.collection, new Document("origen",a.id()).append("destino",b.id()));
+             this._id = this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())).get(0).get("_id");
         }
-        //this._id = this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())).get(0).get("_id");
+        if( this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())) != null){
+            this._id = this.mDB.find(this.collection,new Document("origen",a.id()).append("destino",b.id())).get(0).get("_id");
+        }
+        
         
      
     
