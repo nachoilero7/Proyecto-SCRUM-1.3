@@ -9,10 +9,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.bson.Document;
 
+/**
+ *
+ * @author DiegoMSI
+ */
 public class Export {
     Export(Client mDB, String savePath) throws IOException{
         String outTextFile = savePath + "\\GrafoExport.txt";
@@ -38,7 +41,7 @@ public class Export {
             };
             graphData = "\n" + graphData + "----------\n";
         }
-        graphData = graphData + "\n>>>>>>>>>> ARCOS <<<<<<<<<<\n";
+        graphData = graphData + ">>>>>>>>>> ARCOS <<<<<<<<<<\n";
         for(int i=0; i < arcos.size(); i++){
             Document attr = arcos.get(i);
             for(String clave : attr.keySet()){
@@ -80,7 +83,6 @@ public class Export {
         }   catch (Exception ex) {
         ex.printStackTrace();
         }
-        
     }
     
 }

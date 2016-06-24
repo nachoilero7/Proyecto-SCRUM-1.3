@@ -55,7 +55,6 @@ public class Client{
             }
             
         });
-        System.out.print("\n Mi size: " + documents.size());
         if(documents.isEmpty())
             return null;
         else

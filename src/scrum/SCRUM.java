@@ -44,15 +44,8 @@ public class SCRUM {
          cm_ma.agregarArco(cm, ma);
          Arco pp_ma = new Arco(mongo);
          pp_ma.agregarArco(pp, ma);
-         Export e = new Export(mongo, "d:");
-          
-       
-         
-         
-        
-         
-         
-     
+         //Export e = new Export(mongo, "d:");
+         Import i = new Import(mongo, "d:\\GrafoExport.txt");
     }
 
    
