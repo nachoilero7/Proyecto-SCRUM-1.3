@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Level;
@@ -21,6 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.bson.Document;
 import scrum.Arco;
 import scrum.Client;
+import scrum.Export;
+import scrum.Import;
 import scrum.Nodo;
 
 /**
@@ -34,7 +37,9 @@ public class CrearGrafo extends javax.swing.JFrame {
     /**
      * Creates new form CrearGrafo
      */
-    public CrearGrafo() {
+    public CrearGrafo() throws IOException {
+        //Import i = new Import(mongo, "d:GrafoExport.txt");
+        //Export e = new Export(mongo,"d:");
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
@@ -54,9 +59,11 @@ public class CrearGrafo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         CrearNodo = new javax.swing.JButton();
         EliminarNodo = new javax.swing.JButton();
-        ActualizarNodo = new javax.swing.JButton();
         AgregarAtributo = new javax.swing.JButton();
         EliminarAtributo = new javax.swing.JButton();
         ActualizarAtributo = new javax.swing.JButton();
@@ -71,16 +78,12 @@ public class CrearGrafo extends javax.swing.JFrame {
         TemaCrearNodo = new javax.swing.JTextField();
         TemaEliminarNodo = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        TemaViejoActualizarNodo = new javax.swing.JTextField();
-        TemaNuevoActualizarNodo = new javax.swing.JTextField();
         AtributoAgregarAtributo = new javax.swing.JTextField();
         ValorAgregarAtributo = new javax.swing.JTextField();
         AtributoEliminarAtributo = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
         AtributoActualizarAtributo = new javax.swing.JTextField();
         NuevoValorActualizarAtributo = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         AtributoAgregarAtributoArco = new javax.swing.JTextField();
         ValorAgregarAtributoArco = new javax.swing.JTextField();
@@ -93,23 +96,29 @@ public class CrearGrafo extends javax.swing.JFrame {
         ListaNodos = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         ListaArcos = new javax.swing.JTextArea();
-        NameNodos = new javax.swing.JComboBox<>();
         NameNodos1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        NameNodos = new javax.swing.JComboBox<>();
+        NameNodos2 = new javax.swing.JComboBox<>();
         addArcoNodo1 = new javax.swing.JComboBox<>();
         addArcoNodo2 = new javax.swing.JComboBox<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        deleteArco = new javax.swing.JComboBox<>();
+        addAttrArco = new javax.swing.JComboBox<>();
+        deleteAttrArco = new javax.swing.JComboBox<>();
+        updateAttrArco = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         Archivo = new javax.swing.JMenu();
         Importar = new javax.swing.JMenuItem();
         Exportar = new javax.swing.JMenuItem();
         Limpiar = new javax.swing.JMenuItem();
         Salir = new javax.swing.JMenuItem();
-        VisualizarGrafo = new javax.swing.JMenu();
+        VerGrafo = new javax.swing.JMenu();
         Salir2 = new javax.swing.JMenu();
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,13 +133,6 @@ public class CrearGrafo extends javax.swing.JFrame {
         EliminarNodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EliminarNodoActionPerformed(evt);
-            }
-        });
-
-        ActualizarNodo.setText("Actualizar Nodo");
-        ActualizarNodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarNodoActionPerformed(evt);
             }
         });
 
@@ -205,15 +207,6 @@ public class CrearGrafo extends javax.swing.JFrame {
 
         TemaEliminarNodo.setText("Tema");
 
-        TemaViejoActualizarNodo.setText("Tema viejo");
-
-        TemaNuevoActualizarNodo.setText("Nuevo Tema");
-        TemaNuevoActualizarNodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TemaNuevoActualizarNodoActionPerformed(evt);
-            }
-        });
-
         AtributoAgregarAtributo.setText("Atributo");
 
         ValorAgregarAtributo.setText("Valor");
@@ -242,13 +235,6 @@ public class CrearGrafo extends javax.swing.JFrame {
         ListaArcos.setRows(5);
         jScrollPane3.setViewportView(ListaArcos);
 
-        NameNodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        NameNodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameNodosActionPerformed(evt);
-            }
-        });
-
         NameNodos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         NameNodos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,19 +242,26 @@ public class CrearGrafo extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        NameNodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        NameNodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameNodosActionPerformed(evt);
+            }
+        });
+
+        NameNodos2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         addArcoNodo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         addArcoNodo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        deleteArco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addAttrArco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        deleteAttrArco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        updateAttrArco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Archivo.setText("Archivo");
 
@@ -309,13 +302,18 @@ public class CrearGrafo extends javax.swing.JFrame {
 
         jMenuBar1.add(Archivo);
 
-        VisualizarGrafo.setText("Visualizar Grafo");
-        VisualizarGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VisualizarGrafoActionPerformed(evt);
+        VerGrafo.setText("Ver Grafo");
+        VerGrafo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VerGrafoMouseClicked(evt);
             }
         });
-        jMenuBar1.add(VisualizarGrafo);
+        VerGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerGrafoActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(VerGrafo);
 
         Salir2.setText("Salir");
         Salir2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -332,59 +330,54 @@ public class CrearGrafo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(NameNodos2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AtributoActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NuevoValorActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(AgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NameNodos1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ValorAgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AtributoAgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(19, 19, 19))
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(EliminarAtributo)
+                                .addGap(44, 44, 44)
+                                .addComponent(CrearNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AtributoEliminarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NameNodos, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TemaCrearNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(EliminarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TemaEliminarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ActualizarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TemaNuevoActualizarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TemaViejoActualizarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(AgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(AtributoAgregarAtributo, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                            .addComponent(NameNodos, 0, 103, Short.MAX_VALUE)
+                                            .addComponent(ValorAgregarAtributo)))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(EliminarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(TemaEliminarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(EliminarAtributo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(AtributoActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(NuevoValorActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
+                                            .addComponent(NameNodos1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(AtributoEliminarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(18, 18, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(CrearNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TemaCrearNodo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(250, 250, 250)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                        .addGap(17, 17, 17)))
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -392,9 +385,8 @@ public class CrearGrafo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(EliminarArco, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(deleteArco, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator7)
                                 .addComponent(jSeparator8)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -408,9 +400,9 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addComponent(AtributoEliminarAtributoArco)
                                         .addComponent(ValorAgregarAtributoArco)
                                         .addComponent(AtributoAgregarAtributoArco)
-                                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(addAttrArco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(deleteAttrArco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(updateAttrArco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -419,7 +411,7 @@ public class CrearGrafo extends javax.swing.JFrame {
                                 .addComponent(addArcoNodo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(addArcoNodo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 23, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -450,15 +442,13 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(EliminarArco)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(deleteArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(AgregarAtributoArco)
-                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(addAttrArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(AtributoAgregarAtributoArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -468,7 +458,7 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(EliminarAtributoArco)
-                                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(deleteAttrArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(AtributoEliminarAtributoArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -476,63 +466,57 @@ public class CrearGrafo extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(ActualizarAtributoArco)
-                                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(updateAttrArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(AtributoActualizarAtributoArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(NuevoValorActualizarAtributoArco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(CrearNodo)
                                     .addComponent(TemaCrearNodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(EliminarNodo)
                                             .addComponent(TemaEliminarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(ActualizarNodo)
-                                            .addComponent(TemaViejoActualizarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(TemaNuevoActualizarNodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(AgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(19, 19, 19)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(NameNodos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(2, 2, 2)
-                                                .addComponent(AtributoAgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(ValorAgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(101, 101, 101)
-                                                .addComponent(EliminarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(118, 118, 118)
                                                 .addComponent(NameNodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(AtributoEliminarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(AtributoAgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(ValorAgregarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(AgregarAtributo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(30, 30, 30)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(ActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(NuevoValorActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(EliminarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
+                                                .addComponent(NameNodos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(AtributoEliminarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(NameNodos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(AtributoActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(46, 46, 46)
-                                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 77, Short.MAX_VALUE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(NuevoValorActualizarAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 92, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -544,7 +528,7 @@ public class CrearGrafo extends javax.swing.JFrame {
         //Creo el objeto JFileChooser
         JFileChooser fc = new JFileChooser();
         //Permitir seleccionar varios ficheros
-        fc.setMultiSelectionEnabled(true);
+        fc.setMultiSelectionEnabled(false);
         //Que se puede seleccionar
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         //Creo el filtro de extencion
@@ -556,11 +540,16 @@ public class CrearGrafo extends javax.swing.JFrame {
         int seleccion = fc.showOpenDialog(this);
         //Si el usuario acepta
         if(seleccion == JFileChooser.APPROVE_OPTION){
-            //Seleccionamos los ficheros
-            File[] ficheros = fc.getSelectedFiles();
-            for (File fichero : ficheros) {
-                //Aca se deberia cargar cada cosa en su lugar para mostrar por pantalla
+            try {
+                //Seleccionamos los ficheros
+                Import i = new Import(mongo,fc.getSelectedFile().getAbsolutePath());
+                this.updateViewArco();
+                this.updateViewNodos();
+            } catch (IOException ex) {
+                Logger.getLogger(CrearGrafo.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
         }
     }//GEN-LAST:event_ImportarActionPerformed
 
@@ -569,14 +558,9 @@ public class CrearGrafo extends javax.swing.JFrame {
             //
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(this);
-            File guarda = fc.getSelectedFile();
-            if(guarda != null){
-                FileWriter save = new FileWriter(guarda + ".txt");
-                /*
-                
-                */
-                save.write("lo que se necesite guardar");
-                save.close();
+            File archivo = fc.getSelectedFile();
+            if(archivo != null){
+                Export e = new Export(mongo, archivo.getAbsolutePath());
                 JOptionPane.showMessageDialog(null,
                     "El archivo se a guardado Exitosamente",
                     "Información",JOptionPane.INFORMATION_MESSAGE);
@@ -590,7 +574,11 @@ public class CrearGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_ExportarActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
-        new CrearGrafo().setVisible(true);
+        try {
+            new CrearGrafo().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(CrearGrafo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_LimpiarActionPerformed
 
@@ -602,19 +590,9 @@ public class CrearGrafo extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_Salir2MouseClicked
 
-    private void VisualizarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarGrafoActionPerformed
-        ImagenGrafo ig = new ImagenGrafo();
-        ig.setVisible(true);
-        //MODIFICARLO PARA PASARLE A ESA OTRA VENTANA LO QUE NECESITE
-    }//GEN-LAST:event_VisualizarGrafoActionPerformed
-
     private void TemaCrearNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TemaCrearNodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TemaCrearNodoActionPerformed
-
-    private void TemaNuevoActualizarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TemaNuevoActualizarNodoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TemaNuevoActualizarNodoActionPerformed
 
     private void CrearNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearNodoActionPerformed
         Nodo newNodo = new Nodo(TemaCrearNodo.getText(),mongo);
@@ -625,6 +603,8 @@ public class CrearGrafo extends javax.swing.JFrame {
     private void updateViewNodos(){
         ListaNodos.setText("");
         this.NameNodos.removeAllItems();
+        this.NameNodos1.removeAllItems();
+        this.NameNodos2.removeAllItems();
         this.addArcoNodo1.removeAllItems();
         this.addArcoNodo2.removeAllItems();
         
@@ -635,10 +615,11 @@ public class CrearGrafo extends javax.swing.JFrame {
                 Object[] keys = nodo.keySet().toArray();
                 String print = "";
                 for(int j=1; j < keys.length;j++){
-                    System.out.print("la clave es: "  + keys[j]);
                     String k = (String) keys[j];
                     print = print + keys[j] + " : " +  nodo.getString(k) + " - ";
                     NameNodos.addItem(nodo.getString("nombre"));
+                    NameNodos1.addItem(nodo.getString("nombre"));
+                    NameNodos2.addItem(nodo.getString("nombre"));
                     addArcoNodo1.addItem(nodo.getString("nombre"));
                     addArcoNodo2.addItem(nodo.getString("nombre"));
                 }      
@@ -650,15 +631,10 @@ public class CrearGrafo extends javax.swing.JFrame {
         Nodo nodo = new Nodo(TemaEliminarNodo.getText(),mongo);
         nodo.dropNodo();
         updateViewNodos();
+        updateViewArco();
         TemaEliminarNodo.setText("");
         
     }//GEN-LAST:event_EliminarNodoActionPerformed
-
-    private void ActualizarNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarNodoActionPerformed
-       Nodo n = new Nodo(TemaViejoActualizarNodo.getText(),mongo);
-       n.modificarAtributo("nombre", TemaNuevoActualizarNodo.getText());
-       updateViewNodos();
-    }//GEN-LAST:event_ActualizarNodoActionPerformed
 
     private void AgregarAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAtributoActionPerformed
         Nodo n = new Nodo((String)NameNodos.getSelectedItem(),mongo);
@@ -668,11 +644,15 @@ public class CrearGrafo extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarAtributoActionPerformed
 
     private void EliminarAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAtributoActionPerformed
-        // TODO add your handling code here:
+         Nodo n = new Nodo((String)NameNodos1.getSelectedItem(),mongo);
+         n.eliminarAtributo(AtributoEliminarAtributo.getText());
+        updateViewNodos();
     }//GEN-LAST:event_EliminarAtributoActionPerformed
 
     private void ActualizarAtributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarAtributoActionPerformed
-        // TODO add your handling code here:
+         Nodo n = new Nodo((String)NameNodos2.getSelectedItem(),mongo);
+         n.modificarAtributo(AtributoActualizarAtributo.getText(), NuevoValorActualizarAtributo.getText());
+         updateViewNodos();
     }//GEN-LAST:event_ActualizarAtributoActionPerformed
     
     
@@ -681,10 +661,18 @@ public class CrearGrafo extends javax.swing.JFrame {
     
         ArrayList<Document> arcos = mongo.find("arco");
         ListaArcos.setText("");
+        deleteArco.removeAllItems();
+        addAttrArco.removeAllItems();
+        deleteAttrArco.removeAllItems();
+        updateAttrArco.removeAllItems();
         if(arcos != null){
             for (Document arco : arcos) {
-                
-                ListaArcos.append(arco.getString("origen") + " -> " + arco.getString("destino"));
+                String d = arco.getString("origen") + "->" + arco.getString("destino");
+                deleteArco.addItem(d);
+                addAttrArco.addItem(d);
+                deleteAttrArco.addItem(d);
+                updateAttrArco.addItem(d);
+                ListaArcos.append( d + "\n");
             }
         }
     }
@@ -692,43 +680,75 @@ public class CrearGrafo extends javax.swing.JFrame {
         Nodo nOne = new Nodo((String)addArcoNodo1.getSelectedItem(),mongo);
         Nodo nTwo = new Nodo((String)addArcoNodo2.getSelectedItem(),mongo);
         Arco arco = new Arco(mongo);
-        arco.agregarArco(nOne, nTwo);   
+        arco.agregarArco(nOne, nTwo); 
+        updateViewArco();
         
     }//GEN-LAST:event_CrearArcoActionPerformed
     
     private void EliminarArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarArcoActionPerformed
-        Nodo nOne = new Nodo("QA",mongo);
-        Nodo nTwo = new Nodo("CM",mongo);
+        String nodos = (String) this.deleteArco.getSelectedItem();
+        
         Arco arco = new Arco(mongo);
-        arco.agregarArco(nOne, nTwo);
+        Nodo a = new Nodo(nodos.split("->")[0],mongo);
+        Nodo b = new Nodo(nodos.split("->")[1],mongo);
+        arco.agregarArco(a,b);
         arco.dropArco();
         updateViewArco();
     }//GEN-LAST:event_EliminarArcoActionPerformed
 
     private void AgregarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAtributoArcoActionPerformed
-        Nodo nOne = new Nodo("QA",mongo);
-        Nodo nTwo = new Nodo("CM",mongo);
+        String nodos = (String) this.addAttrArco.getSelectedItem();
+        
         Arco arco = new Arco(mongo);
-        arco.agregarArco(nOne, nTwo);
-        arco.dropArco();
-        updateViewArco();
+        Nodo a = new Nodo(nodos.split("->")[0],mongo);
+        Nodo b = new Nodo(nodos.split("->")[1],mongo);
+        arco.agregarArco(a,b);
+        arco.agregarAtributo(AtributoAgregarAtributoArco.getText(), ValorAgregarAtributoArco.getText());
+        
     }//GEN-LAST:event_AgregarAtributoArcoActionPerformed
 
     private void EliminarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAtributoArcoActionPerformed
-        // TODO add your handling code here:
+        String nodos = (String) this.deleteAttrArco.getSelectedItem();
+        
+        Arco arco = new Arco(mongo);
+        Nodo a = new Nodo(nodos.split("->")[0],mongo);
+        Nodo b = new Nodo(nodos.split("->")[1],mongo);
+        arco.agregarArco(a,b);
+        arco.eliminarAtributo(AtributoEliminarAtributoArco.getText());
+  
     }//GEN-LAST:event_EliminarAtributoArcoActionPerformed
 
     private void ActualizarAtributoArcoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarAtributoArcoActionPerformed
-        // TODO add your handling code here:
+        String nodos = (String) this.updateAttrArco.getSelectedItem();
+        
+        Arco arco = new Arco(mongo);
+        Nodo a = new Nodo(nodos.split("->")[0],mongo);
+        Nodo b = new Nodo(nodos.split("->")[1],mongo);
+        arco.agregarArco(a,b);
+        arco.modificarAtributo(AtributoActualizarAtributoArco.getText(), NuevoValorActualizarAtributoArco.getText());
     }//GEN-LAST:event_ActualizarAtributoArcoActionPerformed
+
+    private void NameNodos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameNodos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameNodos1ActionPerformed
 
     private void NameNodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameNodosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NameNodosActionPerformed
 
-    private void NameNodos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameNodos1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NameNodos1ActionPerformed
+    private void VerGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerGrafoActionPerformed
+       
+    }//GEN-LAST:event_VerGrafoActionPerformed
+
+    private void VerGrafoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerGrafoMouseClicked
+        try {
+            Export e = new Export(mongo,"d:");
+        } catch (IOException ex) {
+            Logger.getLogger(CrearGrafo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ShowPNG sp = new ShowPNG("D:\\GrafoExport.png");
+        sp.setVisible(true);
+    }//GEN-LAST:event_VerGrafoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -760,7 +780,11 @@ public class CrearGrafo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearGrafo().setVisible(true);
+                try {
+                    new CrearGrafo().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(CrearGrafo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -768,7 +792,6 @@ public class CrearGrafo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarAtributo;
     private javax.swing.JButton ActualizarAtributoArco;
-    private javax.swing.JButton ActualizarNodo;
     private javax.swing.JButton AgregarAtributo;
     private javax.swing.JButton AgregarAtributoArco;
     private javax.swing.JMenu Archivo;
@@ -791,36 +814,35 @@ public class CrearGrafo extends javax.swing.JFrame {
     private javax.swing.JTextArea ListaNodos;
     private javax.swing.JComboBox<String> NameNodos;
     private javax.swing.JComboBox<String> NameNodos1;
+    private javax.swing.JComboBox<String> NameNodos2;
     private javax.swing.JTextField NuevoValorActualizarAtributo;
     private javax.swing.JTextField NuevoValorActualizarAtributoArco;
     private javax.swing.JMenuItem Salir;
     private javax.swing.JMenu Salir2;
     private javax.swing.JTextField TemaCrearNodo;
     private javax.swing.JTextField TemaEliminarNodo;
-    private javax.swing.JTextField TemaNuevoActualizarNodo;
-    private javax.swing.JTextField TemaViejoActualizarNodo;
     private javax.swing.JTextField ValorAgregarAtributo;
     private javax.swing.JTextField ValorAgregarAtributoArco;
-    private javax.swing.JMenu VisualizarGrafo;
+    private javax.swing.JMenu VerGrafo;
     private javax.swing.JComboBox<String> addArcoNodo1;
     private javax.swing.JComboBox<String> addArcoNodo2;
+    private javax.swing.JComboBox<String> addAttrArco;
+    private javax.swing.JComboBox<String> deleteArco;
+    private javax.swing.JComboBox<String> deleteAttrArco;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JComboBox<String> updateAttrArco;
     // End of variables declaration//GEN-END:variables
 }

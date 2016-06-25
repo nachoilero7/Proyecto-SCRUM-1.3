@@ -6,6 +6,9 @@
 package Interfaz;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -98,8 +101,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void CrearGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearGrafoActionPerformed
         // CREAR NUEVA VENTANA DE CREACION DE GRAFO Y HACERLA VISIBLE
-        CrearGrafo cg = new CrearGrafo();
-        cg.setVisible(true);
+        CrearGrafo cg;
+        try {
+            cg = new CrearGrafo();
+            cg.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.setVisible(false);
     }//GEN-LAST:event_CrearGrafoActionPerformed
 
     private void ImportarEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarEditarActionPerformed
@@ -126,8 +136,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
         //UNA VEZ QUE SE IMPORTA CREAR NUEVA VENTANA DE CREACION DE GRAFO Y HACERLA VISIBLE
-        CrearGrafo cg = new CrearGrafo();
-        cg.setVisible(true);
+        CrearGrafo cg;
+        try {
+            cg = new CrearGrafo();
+            cg.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_ImportarEditarActionPerformed
 
     private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked

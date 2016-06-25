@@ -18,13 +18,11 @@ import org.bson.Document;
  */
 public class Export {
     public Export(Client mDB, String savePath) throws IOException{
-        String outTextFile = savePath + "\\GrafoExport.txt";
+        String outTextFile = savePath;
         String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
-        String outImageFile = savePath + "\\GrafoExport.jpg";   
-        String gvFile = savePath + "\\gvData.txt";
+        String outImageFile =  "d:\\GrafoExport.png";   
+        String gvFile = "d:\\gvData.txt";
 
-        File archivo = new File(outTextFile);
-        
         ArrayList<Document> nodos = mDB.find("nodo"); 
         ArrayList<Document> arcos = mDB.find("arco"); 
         String gvData = "";
@@ -49,14 +47,10 @@ public class Export {
             for(String clave : attr.keySet()){
                 if(!clave.equals("_id")){
                     if(clave.equals("origen")){
-                        for(int j=0; j < nodos.size(); j++)
-                            if(nodos.get(j).containsValue(attr.get(clave)))
-                            gvData += nodos.get(j).get("nombre");
+                        gvData += attr.get(clave);
                }
                     if(clave.equals("destino")){
-                        for(int j=0; j < nodos.size(); j++)
-                            if(nodos.get(j).containsValue(attr.get(clave)))
-                             gvData += " -> " + nodos.get(j).get("nombre") + ";\n";
+                        gvData += " -> " + attr.get(clave) + ";\n";
                }
                     if(!clave.equals("origen") && !clave.equals("destino")){
                         edgeData = clave + ": " +  attr.get(clave) + "\n"; 
@@ -66,26 +60,30 @@ public class Export {
             };
             graphData += gvData.split("\n")[gvData.split("\n").length-1] + "\n";
             graphData = "\n" + graphData + "----------\n";
-        }
+        } 
         System.out.print(graphData);
-        System.out.print(gvData);
+        //System.out.print(gvData); 
         String finalData = "digraph A {\n "
                 + "nodesep=1.0 \n "
                 + "node [fontname=ArialBlack,shape=circle]\n "
                 + "edge [color=Blue,style=bold]" + gvData + "}";
-        FileWriter file = new FileWriter(archivo);
-        BufferedWriter writeFile = new BufferedWriter(file);
+        
+        Runtime rt = Runtime.getRuntime();
+        
+        File outText = new File(outTextFile);
+        FileWriter outTextFW = new FileWriter(outText,false);
+        BufferedWriter writeFile = new BufferedWriter(outTextFW);
         writeFile.write(graphData.trim());
         writeFile.close();
-        FileWriter gv = new FileWriter(gvFile);
-        BufferedWriter gvBW = new BufferedWriter(gv);
+        File graphVizFile = new File(gvFile);
+        FileWriter gvFW = new FileWriter(graphVizFile,false);
+        BufferedWriter gvBW = new BufferedWriter(gvFW);
         gvBW.write(finalData.trim());
         gvBW.close();
         try{
-        String comand = dotPath + " -Tjpg " + gvFile + " -o " + outImageFile;
-        Runtime rt = Runtime.getRuntime();
+        
+        String comand = dotPath + " -Tpng " + gvFile + " -o " + outImageFile;
         rt.exec( comand );
-        rt.exec("rm " + gvFile);
         }   catch (Exception ex) {
         ex.printStackTrace();
         }
